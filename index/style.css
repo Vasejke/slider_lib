@@ -1,0 +1,10 @@
+body {
+  margin:0;
+  background-color: #262626;
+}
+.title {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: center;
+}
