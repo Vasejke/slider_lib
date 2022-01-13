@@ -86,8 +86,34 @@ function generatePlayer(slide, isFirst) {
   return `
 <div class="player__chunk ${isFirst ? 'player__chunk__active': ''}">
             <img src="${slide.url}" alt="${slide.alt || ''}">
+            ${generateOverlay(slide)}
 </div>`;
 }
+function generateOverlay(slide) {
+  if(slide.overlays === undefined) {
+    return '';
+  }
+
+  let res = '';
+
+  for (const el of slide.overlays){
+    const styles = (el.styles !==undefined ? Object.entries(el.styles) : [])
+      .map((el) => el.join(':'))
+      .join(';');
+
+    res += `<div class="player__chunk__overlay" style=""></div>`
+  } 
+  return res;
+  
+  function renderOverlay(overlay){
+    if(overlay.type =='img'){
+      return `<img src="${overlay.value}" alt=""`;
+    }
+    
+    return '';
+  }
+}
+
 
 function generatePlayerLayout(){
   return `
